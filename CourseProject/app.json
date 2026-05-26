@@ -1,24 +1,39 @@
 {
   "expo": {
-    "name": "SkyCast",
-    "slug": "SkyCast",
+    "name": "AstroWatch",
+    "slug": "astrowatch",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "scheme": "astrowatch",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "orientation": "default",
+    "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0a0a1a"
+    },
+    "plugins": ["expo-router", "expo-screen-orientation"],
+    "experiments": {
+      "typedRoutes": true
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.astrowatch.app",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSExceptionDomains": {
+            "open-notify.org": {
+              "NSExceptionAllowsInsecureHTTPLoads": true
+            }
+          }
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#0a0a1a"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false

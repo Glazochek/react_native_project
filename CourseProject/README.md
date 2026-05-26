@@ -1,7 +1,24 @@
-# SkyCast
+# AstroWatch
 
-SkyCast is a mobile weather app that lets you check current conditions and a multi-day forecast for your current location or any city you choose. You can save your favourite cities for quick access, compare across cities, andview historic data.
+Space dashboard for astronauts — ISS position, NASA DONKI space weather, crew in orbit, and astronomy picture of the day.
 
-## Potential Features
+## Navigation
 
+- **Root Stack** — tabs + optional About (`/temp`)
+- **Tabs** — Dashboard (`/`), Crew (`/crew`), APOD (`/apod`)
+- **Nested Stack** in Crew — list → `/crew/[id]`
 
+## APIs
+
+- [Open Notify](http://open-notify.org/) — ISS position, people in space
+- [NASA DONKI & APOD](https://api.nasa.gov/) — `DEMO_KEY`
+
+## Start
+
+```bash
+cd CourseProject
+npm install
+npx expo start --clear
+```
+
+Press **s** for Expo Go if needed, then scan the QR code.
