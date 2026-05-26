@@ -3,6 +3,9 @@
 # dependencies
 node_modules/
 
+CLAUDE.md
+AGENTS.md
+
 # Expo
 .claude
 .idea/
