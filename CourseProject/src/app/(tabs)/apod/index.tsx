@@ -1,65 +1,40 @@
-import { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  Image,
-  ScrollView,
-  StyleSheet,
-  View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useEffect, useState } from "react"
+import { ActivityIndicator, Image } from "react-native"
 
-import Typography from "#design/elements/Typegraphy";
-import { NASA_KEY, type ApodData } from "#shared/space";
+import { Text } from "#design/components"
+import { Screen, ScreenScroll, Stack } from "#design/layouts"
+import { media as m } from "#design/recipes"
+import { NASA_KEY, type ApodData } from "#shared/space"
 
-const App: React.FC = () => {
-  const [data, setData] = useState<ApodData>();
+export default function App() {
+  const [data, setData] = useState<ApodData>()
 
   useEffect(() => {
-    void (async () => {
+    async function load() {
       const res = await fetch(
         `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}`,
-      );
-      setData((await res.json()) as ApodData);
-    })();
-  }, []);
+      )
+      const json = await res.json()
+      setData(json as ApodData)
+    }
+    load()
+  }, [])
 
   if (!data) {
     return (
-      <SafeAreaView style={styles.safe}>
-        <ActivityIndicator size="large" style={styles.load} />
-      </SafeAreaView>
-    );
+      <Screen>
+        <ActivityIndicator size="large" />
+      </Screen>
+    )
   }
 
   return (
-    <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <Typography variant="title">{data.title}</Typography>
-        <Image
-          source={{ uri: data.url }}
-          style={styles.img}
-          resizeMode="cover"
-        />
-        <View style={styles.body}>
-          <Typography variant="muted">{data.explanation}</Typography>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-export default App;
-
-const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#fff" },
-  load: { flex: 1 },
-  container: { padding: 16, paddingBottom: 32 },
-  img: {
-    width: "100%",
-    height: 220,
-    borderRadius: 8,
-    marginVertical: 12,
-    backgroundColor: "#eee",
-  },
-  body: { marginTop: 8 },
-});
+    <ScreenScroll contentContainerStyle={m.apodContent}>
+      <Text variant="title">{data.title}</Text>
+      <Image source={{ uri: data.url }} style={m.apodImage} resizeMode="cover" />
+      <Stack style={m.apodBody}>
+        <Text variant="muted">{data.explanation}</Text>
+      </Stack>
+    </ScreenScroll>
+  )
+}

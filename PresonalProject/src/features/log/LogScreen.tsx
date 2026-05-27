@@ -1,7 +1,8 @@
-import { View, StyleSheet } from 'react-native'
+import { Screen } from '#design/layouts'
+import { Meal } from '#shared'
+
 import { MealInput } from './MealInput'
 import { MealList } from './MealList'
-import { Meal } from '#shared'
 
 type Props = {
   meals: Meal[]
@@ -10,13 +11,9 @@ type Props = {
 
 export function LogScreen({ meals, onAdd }: Props) {
   return (
-    <View style={s.container}>
+    <Screen>
       <MealInput onAdd={onAdd} />
       <MealList meals={meals} />
-    </View>
+    </Screen>
   )
 }
-
-const s = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
-})

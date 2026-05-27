@@ -1,7 +1,7 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Tabs } from "expo-router";
+import FontAwesome from "@expo/vector-icons/FontAwesome"
+import { Tabs } from "expo-router"
 
-const Layout: React.FC = () => {
+const Layout = () => {
   return (
     <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen
@@ -32,7 +32,7 @@ const Layout: React.FC = () => {
         }}
       />
     </Tabs>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

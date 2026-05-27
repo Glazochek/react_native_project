@@ -1,32 +1,23 @@
-import { Stack } from "expo-router";
-import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Stack as NavStack } from "expo-router"
 
-import Typography from "#design/elements/Typegraphy";
-import { CrewScroll } from "#shared/space";
+import { Text } from "#design/components"
+import { Screen, Stack } from "#design/layouts"
+import { screen as s } from "#design/recipes"
+import { CrewScroll } from "#shared/space"
 
-const App: React.FC = () => {
+export default function App() {
   return (
     <>
-      <Stack.Screen options={{ title: "Crew" }} />
-
-      <SafeAreaView style={styles.safe}>
-        <View style={styles.container}>
-          <Typography variant="title">In space now</Typography>
-          <View style={styles.hint}>
-            <Typography variant="muted">tap a name for details</Typography>
-          </View>
+      <NavStack.Screen options={{ title: "Crew" }} />
+      <Screen>
+        <Stack style={s.section}>
+          <Text variant="title">In space now</Text>
+          <Stack align="center" style={s.hint}>
+            <Text variant="muted">tap a name for details</Text>
+          </Stack>
           <CrewScroll />
-        </View>
-      </SafeAreaView>
+        </Stack>
+      </Screen>
     </>
-  );
-};
-
-export default App;
-
-const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#fff" },
-  container: { flex: 1, paddingTop: 8 },
-  hint: { alignItems: "center", marginBottom: 8 },
-});
+  )
+}

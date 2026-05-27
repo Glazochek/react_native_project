@@ -1,42 +1,32 @@
-import { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { useEffect, useState } from "react"
 
-import Card from "#design/elements/Card";
-import Typography from "#design/elements/Typegraphy";
-import { spacing } from "#design/foundations";
+import { Card, Text } from "#design/components"
+import { Stack } from "#design/layouts"
 
-import type { IssPosition } from "./types";
+import type { IssPosition } from "./types"
 
-export const IssPositionCard: React.FC = () => {
-  const [pos, setPos] = useState<IssPosition>();
+export function IssPositionCard() {
+  const [pos, setPos] = useState<IssPosition>()
 
   useEffect(() => {
-    void (async () => {
-      const res = await fetch("http://api.open-notify.org/iss-now.json");
-      const data = (await res.json()) as {
-        iss_position: { latitude: string; longitude: string };
-      };
+    async function go() {
+      const res = await fetch("http://api.open-notify.org/iss-now.json")
+      const data = await res.json()
       setPos({
         latitude: data.iss_position.latitude,
         longitude: data.iss_position.longitude,
-      });
-    })();
-  }, []);
+      })
+    }
+    go()
+  }, [])
 
   return (
     <Card>
-      <View style={styles.main}>
-        <Typography variant="title">ISS position</Typography>
-        <Typography variant="muted">lat {pos?.latitude ?? "--"}</Typography>
-        <Typography variant="muted">lng {pos?.longitude ?? "--"}</Typography>
-      </View>
+      <Stack align="center">
+        <Text variant="title">ISS position</Text>
+        <Text variant="muted">lat {pos?.latitude ?? "--"}</Text>
+        <Text variant="muted">lng {pos?.longitude ?? "--"}</Text>
+      </Stack>
     </Card>
-  );
-};
-
-const styles = StyleSheet.create({
-  main: {
-    alignItems: "center",
-    gap: spacing.between,
-  },
-});
+  )
+}

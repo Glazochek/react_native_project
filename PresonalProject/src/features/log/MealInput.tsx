@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { View, TextInput, Button, StyleSheet } from 'react-native'
+
+import { Button, Input } from '#design/components'
+import { Stack } from '#design/layouts'
 import { Meal } from '#shared'
 
 type Props = {
@@ -25,32 +27,10 @@ export function MealInput({ onAdd }: Props) {
   }
 
   return (
-    <View style={s.container}>
-      <TextInput
-        style={s.input}
-        placeholder="meal name"
-        value={name}
-        onChangeText={setName}
-      />
-      <TextInput
-        style={s.input}
-        placeholder="calories"
-        value={cal}
-        onChangeText={setCal}
-        keyboardType="numeric"
-      />
+    <Stack>
+      <Input placeholder="meal name" value={name} onChangeText={setName} />
+      <Input placeholder="calories" value={cal} onChangeText={setCal} keyboardType="numeric" />
       <Button title="add meal" onPress={handleAdd} />
-    </View>
+    </Stack>
   )
 }
-
-const s = StyleSheet.create({
-  container: { padding: 16 },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    borderRadius: 6,
-    marginBottom: 8,
-  },
-})

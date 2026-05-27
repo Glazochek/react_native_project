@@ -1,51 +1,38 @@
-import { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { useEffect, useState } from "react"
 
-import Card from "#design/elements/Card";
-import Typography from "#design/elements/Typegraphy";
-import { spacing } from "#design/foundations";
+import { Card, Text } from "#design/components"
+import { Stack } from "#design/layouts"
 
-import { NASA_KEY } from "./constants";
-import type { DonkiNote } from "./types";
+import { NASA_KEY } from "./constants"
+import type { DonkiNote } from "./types"
 
-export const SolarWeatherCard: React.FC = () => {
-  const [note, setNote] = useState<DonkiNote>();
+export const SolarWeatherCard = () => {
+  const [note, setNote] = useState<DonkiNote>()
 
   useEffect(() => {
     void (async () => {
       const res = await fetch(
         `https://api.nasa.gov/DONKI/notifications?api_key=${NASA_KEY}`,
-      );
-      const data = (await res.json()) as {
-        messageType: string;
-        messageBody: string;
-      }[];
-      const latest = data[0];
-      if (!latest) return;
-      const body = latest.messageBody;
+      )
+      const data = await res.json()
+      const latest = data[0]
+      if (!latest) return
+      let body = latest.messageBody
+      if (body.length > 100) body = body.slice(0, 100) + "…"
       setNote({
         messageType: latest.messageType,
-        messageBody: body.length > 100 ? body.slice(0, 100) + "…" : body,
-      });
-    })();
-  }, []);
+        messageBody: body,
+      })
+    })()
+  }, [])
 
   return (
     <Card>
-      <View style={styles.main}>
-        <Typography variant="title">Space weather</Typography>
-        <Typography variant="label">{note?.messageType ?? "--"}</Typography>
-        <Typography variant="muted">
-          {note?.messageBody ?? "loading…"}
-        </Typography>
-      </View>
+      <Stack align="center">
+        <Text variant="title">Space weather</Text>
+        <Text variant="label">{note?.messageType ?? "--"}</Text>
+        <Text variant="muted">{note?.messageBody ?? "loading…"}</Text>
+      </Stack>
     </Card>
-  );
-};
-
-const styles = StyleSheet.create({
-  main: {
-    alignItems: "center",
-    gap: spacing.between,
-  },
-});
+  )
+}

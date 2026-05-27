@@ -1,34 +1,19 @@
-import { ScrollView, StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Text } from "#design/components"
+import { ScreenScroll, Stack } from "#design/layouts"
+import { screen as s } from "#design/recipes"
+import { IssPositionCard, SolarWeatherCard } from "#shared/space"
 
-import Typography from "#design/elements/Typegraphy";
-import { IssPositionCard, SolarWeatherCard } from "#shared/space";
-
-const App: React.FC = () => {
+export default function App() {
   return (
-    <SafeAreaView style={styles.safe}>
-      <ScrollView
-        contentContainerStyle={styles.container}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.heading}>
-          <Typography variant="title">AstroWatch</Typography>
-        </View>
-        <IssPositionCard />
-        <SolarWeatherCard />
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-export default App;
-
-const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#ffffff" },
-  container: {
-    flexGrow: 1,
-    paddingVertical: 16,
-    alignItems: "stretch",
-  },
-  heading: { alignItems: "center", marginBottom: 8 },
-});
+    <ScreenScroll
+      header={
+        <Stack align="center" style={s.section}>
+          <Text variant="title">AstroWatch</Text>
+        </Stack>
+      }
+    >
+      <IssPositionCard />
+      <SolarWeatherCard />
+    </ScreenScroll>
+  )
+}

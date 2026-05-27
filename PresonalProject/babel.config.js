@@ -7,6 +7,7 @@ module.exports = function (api) {
           'module-resolver',
           {
             alias: {
+              '#design': './src/design/index.ts',
               '#shared': './src/shared/index.ts',
               '#features': './src/features',
             },

@@ -1,37 +1,23 @@
-import { Stack } from "expo-router";
-import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Stack } from "expo-router"
 
-import Typography from "#design/elements/Typegraphy";
+import { Text } from "#design/components"
+import { Center, Screen } from "#design/layouts"
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <>
       <Stack.Screen options={{ title: "About" }} />
-
-      <SafeAreaView style={styles.safe}>
-        <View style={styles.container}>
-          <Typography variant="title">AstroWatch</Typography>
-          <Typography variant="muted">
-            Space dashboard: ISS position, DONKI alerts, crew in orbit, NASA
-            APOD.
-          </Typography>
-          <Typography href="/">Back to Dashboard</Typography>
-        </View>
-      </SafeAreaView>
+      <Screen>
+        <Center>
+          <Text variant="title">AstroWatch</Text>
+          <Text variant="muted">
+            Space dashboard: ISS position, DONKI alerts, crew in orbit, NASA APOD.
+          </Text>
+          <Text href="/">Back to Dashboard</Text>
+        </Center>
+      </Screen>
     </>
-  );
-};
+  )
+}
 
-export default App;
-
-const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#fff" },
-  container: {
-    flex: 1,
-    padding: 24,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 12,
-  },
-});
+export default App

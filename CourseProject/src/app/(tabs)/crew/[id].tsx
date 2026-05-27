@@ -1,36 +1,23 @@
-import { Stack, useLocalSearchParams } from "expo-router";
-import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Stack, useLocalSearchParams } from "expo-router"
 
-import Typography from "#design/elements/Typegraphy";
+import { Text } from "#design/components"
+import { Center, Screen } from "#design/layouts"
 
-const App: React.FC = () => {
-  const { id, craft } = useLocalSearchParams<{ id: string; craft?: string }>();
-  const name = id ? decodeURIComponent(id) : "--";
+export default function App() {
+  const params = useLocalSearchParams<{ id: string; craft?: string }>()
+  let name = "--"
+  if (params.id) name = decodeURIComponent(params.id)
 
   return (
     <>
       <Stack.Screen options={{ title: name }} />
-
-      <SafeAreaView style={styles.safe}>
-        <View style={styles.container}>
-          <Typography variant="title">{name}</Typography>
-          <Typography variant="label">craft</Typography>
-          <Typography variant="large">{craft ?? "--"}</Typography>
-        </View>
-      </SafeAreaView>
+      <Screen>
+        <Center>
+          <Text variant="title">{name}</Text>
+          <Text variant="label">craft</Text>
+          <Text variant="large">{params.craft ?? "--"}</Text>
+        </Center>
+      </Screen>
     </>
-  );
-};
-
-export default App;
-
-const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#fff" },
-  container: {
-    flex: 1,
-    padding: 24,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+  )
+}

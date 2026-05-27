@@ -1,4 +1,8 @@
-import { FlatList, Text, View, StyleSheet } from 'react-native'
+import { FlatList } from 'react-native'
+
+import { Text } from '#design/components'
+import { Row } from '#design/layouts'
+import { list as s } from '#design/recipes'
 import { Meal } from '#shared'
 
 type Props = {
@@ -13,27 +17,14 @@ export function MealList({ meals }: Props) {
     <FlatList
       data={todayMeals}
       keyExtractor={m => String(m.id)}
+      contentContainerStyle={s.content}
       renderItem={({ item }) => (
-        <View style={s.row}>
+        <Row>
           <Text>{item.name}</Text>
-          <Text style={s.cal}>{item.cal} kcal</Text>
-        </View>
+          <Text style={s.rowCal}>{item.cal} kcal</Text>
+        </Row>
       )}
       ListEmptyComponent={<Text style={s.empty}>no meals today</Text>}
-      contentContainerStyle={s.list}
     />
   )
 }
-
-const s = StyleSheet.create({
-  list: { padding: 16 },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 8,
-    borderBottomWidth: 1,
-    borderColor: '#eee',
-  },
-  cal: { color: '#888' },
-  empty: { color: '#aaa', textAlign: 'center', padding: 16 },
-})

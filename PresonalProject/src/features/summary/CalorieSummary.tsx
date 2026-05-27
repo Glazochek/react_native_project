@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { Meal, DAILY_GOAL } from '#shared'
+
+import { Card, Text } from '#design/components'
+import { card as c } from '#design/recipes'
+import { DAILY_GOAL, Meal } from '#shared'
 
 type Props = {
   meals: Meal[]
@@ -11,22 +13,17 @@ export function CalorieSummary({ meals }: Props) {
 
   useEffect(() => {
     const today = new Date().toDateString()
-    const sum = meals
-      .filter(m => m.date === today)
-      .reduce((acc, m) => acc + m.cal, 0)
+    let sum = 0
+    for (const m of meals) {
+      if (m.date === today) sum += m.cal
+    }
     setTotal(sum)
   }, [meals])
 
   return (
-    <View style={s.box}>
-      <Text style={s.total}>{total} kcal</Text>
-      <Text style={s.goal}>goal: {DAILY_GOAL} kcal</Text>
-    </View>
+    <Card>
+      <Text style={c.summaryTotal}>{total} kcal</Text>
+      <Text style={c.summaryGoal}>goal: {DAILY_GOAL} kcal</Text>
+    </Card>
   )
 }
-
-const s = StyleSheet.create({
-  box: { padding: 16, margin: 16, backgroundColor: '#f5f5f5', borderRadius: 8 },
-  total: { fontSize: 32, fontWeight: 'bold' },
-  goal: { marginTop: 4, color: '#666' },
-})

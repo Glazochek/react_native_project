@@ -1,7 +1,5 @@
-import { Stack } from "expo-router";
+import { Stack } from "expo-router"
 
-const Layout: React.FC = () => {
-  return <Stack screenOptions={{ headerShown: true }} />;
-};
-
-export default Layout;
+export default function Layout() {
+  return <Stack screenOptions={{ headerShown: true }} />
+}

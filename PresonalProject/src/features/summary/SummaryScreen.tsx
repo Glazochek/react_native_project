@@ -1,9 +1,12 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import type { StackNavigationProp } from '@react-navigation/stack'
-import type { RootStackParamList } from '../../navigation/types'
-import { CalorieSummary } from './CalorieSummary'
+
+import { Button, Text } from '#design/components'
+import { Screen, Stack } from '#design/layouts'
 import { Meal } from '#shared'
+import type { RootStackParamList } from '../../navigation/types'
+
+import { CalorieSummary } from './CalorieSummary'
 
 type Props = {
   meals: Meal[]
@@ -13,15 +16,12 @@ export function SummaryScreen({ meals }: Props) {
   const nav = useNavigation<StackNavigationProp<RootStackParamList>>()
 
   return (
-    <View style={s.container}>
-      <Text style={s.title}>NomNom 🍔</Text>
+    <Screen>
+      <Text variant="title">NomNom 🍔</Text>
       <CalorieSummary meals={meals} />
-      <Button title="log a meal" onPress={() => nav.navigate('Log')} />
-    </View>
+      <Stack>
+        <Button title="log a meal" onPress={() => nav.navigate('Log')} />
+      </Stack>
+    </Screen>
   )
 }
-
-const s = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
-  title: { fontSize: 28, fontWeight: 'bold', padding: 16 },
-})
