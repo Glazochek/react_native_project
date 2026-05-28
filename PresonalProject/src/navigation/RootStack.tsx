@@ -1,26 +1,22 @@
-import { useState } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { TabsNavigator } from './TabsNavigator'
+
 import { LogScreen } from '#features/log'
-import { Meal } from '#shared'
+import { useMealsStorage } from '#shared'
+import { TabsNavigator } from './TabsNavigator'
 import type { RootStackParamList } from './types'
 
 const Stack = createStackNavigator<RootStackParamList>()
 
 export function RootStack() {
-  const [meals, setMeals] = useState<Meal[]>([])
-
-  function addMeal(m: Meal) {
-    setMeals(prev => [...prev, m])
-  }
+  const data = useMealsStorage()
 
   return (
     <Stack.Navigator>
       <Stack.Screen name="Tabs" options={{ headerShown: false }}>
-        {() => <TabsNavigator meals={meals} />}
+        {() => <TabsNavigator meals={data.meals} />}
       </Stack.Screen>
       <Stack.Screen name="Log" options={{ title: 'Log Meal' }}>
-        {() => <LogScreen meals={meals} onAdd={addMeal} />}
+        {() => <LogScreen meals={data.meals} onAdd={data.addMeal} />}
       </Stack.Screen>
     </Stack.Navigator>
   )

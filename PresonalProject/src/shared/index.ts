@@ -6,3 +6,5 @@ export type Meal = {
 }
 
 export const DAILY_GOAL = 2000
+
+export { useMealsStorage } from './useMealsStorage'

@@ -10,9 +10,10 @@ type Props = {
 }
 
 export function HistoryScreen({ meals }: Props) {
-  const grouped: Record<string, Meal[]> = {}
+  const grouped: any = {}
 
-  for (const m of meals) {
+  for (let i = 0; i < meals.length; i++) {
+    const m = meals[i]
     if (!grouped[m.date]) grouped[m.date] = []
     grouped[m.date].push(m)
   }
@@ -24,10 +25,10 @@ export function HistoryScreen({ meals }: Props) {
       <FlatList
         data={days}
         keyExtractor={d => d}
-        renderItem={({ item: day }) => (
+        renderItem={({ item }) => (
           <View style={s.section}>
-            <Text style={s.date}>{day}</Text>
-            {grouped[day].map(m => (
+            <Text style={s.date}>{item}</Text>
+            {grouped[item].map((m: Meal) => (
               <Row key={m.id}>
                 <Text>{m.name}</Text>
                 <Text style={s.rowCal}>{m.cal} kcal</Text>
