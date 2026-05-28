@@ -7,9 +7,8 @@ export default function Layout() {
     <>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="temp" options={{ title: "About" }} />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </>
   )
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import config from "@christopherjbaker/eslint-config/react-strict";
 import { defineConfig, globalIgnores } from "eslint/config";
 
@@ -17,7 +16,6 @@ export default defineConfig(
       "expo/no-dynamic-env-var": "error",
       "expo/prefer-box-shadow": "warn",
 
-      // Prevent use of CJS `require` syntax unless importing assets to align with Metro behavior.
       "@typescript-eslint/no-require-imports": [
         "warn",
         {
@@ -29,6 +27,5 @@ export default defineConfig(
     },
   },
   {
-    // configs overrides, if need
   },
 );

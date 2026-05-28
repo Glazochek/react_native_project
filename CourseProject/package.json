@@ -1,5 +1,5 @@
 {
-  "name": "astrowatch",
+  "name": "stockpulse",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -7,7 +7,8 @@
   "imports": {
     "#design": "./src/shared/design/index.ts",
     "#design/*": "./src/shared/design/*/index.ts",
-    "#shared/*": "./src/shared/*/index.ts"
+    "#shared/*": "./src/shared/*/index.ts",
+    "#features/*": "./src/features/*/index.ts"
   },
   "scripts": {
     "lint": "npm run lint-typecheck && npm run lint-eslint && npm run lint-prettier && npm run lint-knip",
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^15.1.1",
+    "@react-native-async-storage/async-storage": "2.2.0",
     "@react-navigation/drawer": "^7.5.0",
     "expo": "^55.0.0",
     "expo-constants": "~55.0.16",
