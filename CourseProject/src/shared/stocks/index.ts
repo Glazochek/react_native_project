@@ -23,7 +23,15 @@ export type NewsItem = {
 
 export async function getQuote(symbol: string) {
   const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${KEY}`)
-  return res.json() as Promise<{ c:number;o:number;h:number;l:number;pc:number;dp:number }>
+  const raw = await res.json()
+  return {
+    c: Number(raw.c) || 0,
+    o: Number(raw.o) || 0,
+    h: Number(raw.h) || 0,
+    l: Number(raw.l) || 0,
+    pc: Number(raw.pc) || 0,
+    dp: Number(raw.dp) || 0,
+  }
 }
 
 export async function getProfile(symbol: string) {

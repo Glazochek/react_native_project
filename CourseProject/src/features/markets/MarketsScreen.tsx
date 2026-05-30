@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { ScrollView, StyleSheet, View } from "react-native"
+import { useEffect, useMemo, useState } from "react"
+import { ScrollView, StyleSheet, Switch, TextInput, View } from "react-native"
 import { useRouter } from "expo-router"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
@@ -14,6 +14,8 @@ export function MarketsScreen() {
   const nav = useRouter()
   const [list, setList] = useState<StockItem[]>([])
   const [fav, setFav] = useState<string[]>([])
+  const [growingOnly, setGrowingOnly] = useState(false)
+  const [searchTxt, setSearchTxt] = useState("")
 
   async function load() {
     const stocks = await getStockList()
@@ -32,13 +34,44 @@ export function MarketsScreen() {
     await AsyncStorage.setItem("fav_stocks", JSON.stringify(next))
   }
 
+  const shown = useMemo(() => {
+    const q = searchTxt.trim().toLowerCase()
+    return list.filter(it => {
+      if (growingOnly && it.dp <= 0) return false
+      if (!q) return true
+      return it.symbol.toLowerCase().includes(q) || it.name.toLowerCase().includes(q)
+    })
+  }, [list, growingOnly, searchTxt])
+
   return (
-    <Screen>
-      <View style={s.topTitle}>
-        <Text variant="title">Markets</Text>
+    <Screen style={s.screen}>
+      <View style={s.header}>
+        <View style={s.titleRow}>
+          <Text style={s.title}>Market</Text>
+          <View style={s.switchWrap}>
+            <Text style={s.switchLbl}>{growingOnly ? "growing" : "all"}</Text>
+            <Switch
+              value={growingOnly}
+              onValueChange={setGrowingOnly}
+              trackColor={{ false: semantics.colors.border, true: semantics.colors.accent }}
+              thumbColor={semantics.colors.text}
+            />
+          </View>
+        </View>
+        <TextInput
+          style={s.search}
+          placeholder="search stocks..."
+          placeholderTextColor={semantics.colors.textMuted}
+          value={searchTxt}
+          onChangeText={setSearchTxt}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
       </View>
+
       <ScrollView contentContainerStyle={s.list}>
-        {list.map(it => (
+        {shown.length === 0 ? <Text variant="muted">No stocks found</Text> : null}
+        {shown.map(it => (
           <StockCard
             key={it.symbol}
             item={it}
@@ -53,10 +86,44 @@ export function MarketsScreen() {
 }
 
 const s = StyleSheet.create({
-  topTitle: {
-    paddingTop: 10,
-    paddingBottom: 2,
+  screen: {
     backgroundColor: semantics.colors.background,
+  },
+  header: {
+    backgroundColor: semantics.colors.background,
+    paddingHorizontal: 16,
+    paddingTop: 8,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: semantics.colors.border,
+  },
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 12,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "700",
+    color: semantics.colors.text,
+  },
+  switchWrap: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  switchLbl: {
+    color: semantics.colors.text,
+    fontSize: 14,
+  },
+  search: {
+    backgroundColor: semantics.colors.surface,
+    color: semantics.colors.text,
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    fontSize: 16,
   },
   list: {
     paddingBottom: 20,

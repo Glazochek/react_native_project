@@ -11,7 +11,10 @@ type P = {
 }
 
 export function StockCard({ item, onOpen, onStar, starred }: P) {
-  const up = item.dp >= 0
+  const price = typeof item.c === "number" ? item.c : 0
+  const chg = typeof item.dp === "number" ? item.dp : 0
+  const up = chg >= 0
+  const hasPrice = price > 0
 
   return (
     <Card style={s.cardMini}>
@@ -24,10 +27,9 @@ export function StockCard({ item, onOpen, onStar, starred }: P) {
         </View>
 
         <View style={s.mid}>
-          <Text>${item.c.toFixed(2)}</Text>
+          <Text>{hasPrice ? `$${price.toFixed(2)}` : "—"}</Text>
           <Text style={{ color: up ? semantics.colors.accent : semantics.colors.accentWarm }}>
-            {up ? "+" : ""}
-            {item.dp.toFixed(2)}%
+            {hasPrice ? `${up ? "+" : ""}${chg.toFixed(2)}%` : "—"}
           </Text>
         </View>
 
