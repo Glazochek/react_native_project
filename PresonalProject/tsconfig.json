@@ -4,8 +4,8 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "#design": ["src/design/index.ts"],
-      "#design/*": ["src/design/*/index.ts"],
+      "#design": ["src/shared/design/index.ts"],
+      "#design/*": ["src/shared/design/*/index.ts"],
       "#shared": ["src/shared/index.ts"],
       "#features/*": ["src/features/*/index.ts"]
     }

@@ -1,8 +1,10 @@
 # NomNom
 
-A simple calorie tracking app for logging meals and staying on top of your daily intake. Add what you eat, see your running total, and build better eating habits one day at a time.
+Small app to track what you eat and stay near your calorie goal.
 
 ## Features
-- Log meals with calorie counts
-- View daily calorie total
-- Meal history by day
+
+- see today calories on summary with a circle
+- log meals when you want
+- history by day
+- profile in settings (age weight goal) and auto daily calories

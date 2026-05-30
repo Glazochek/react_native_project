@@ -1,0 +1,7 @@
+export const white = '#ffffff'
+export const black = '#000000'
+export const lime = '#b8ff3c'
+export const gray400 = '#8e8e93'
+export const gray700 = '#2c2c2e'
+export const gray800 = '#1c1c1e'
+export const gray900 = '#3a3a3c'

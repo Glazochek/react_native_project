@@ -1,10 +1,10 @@
-export type Meal = {
-  id: number
-  name: string
-  cal: number
-  date: string
-}
-
-export const DAILY_GOAL = 2000
-
-export { useMealsStorage } from './useMealsStorage'
+export { AppProvider, useAppStuff } from './app'
+export type { DayRow, MealThing, ProfileStuff } from './meals'
+export {
+  daysWithCals,
+  emptyProfile,
+  getDailyCals,
+  makeMeal,
+  niceDate,
+  todayCals,
+} from './meals'

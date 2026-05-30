@@ -1,1 +1,1 @@
-export { LogScreen } from './LogScreen'
+export { LogMealScreen } from './LogMealScreen'

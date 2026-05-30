@@ -1,42 +1,27 @@
 import { FlatList, View } from 'react-native'
 
 import { Text } from '#design/components'
-import { Row, Screen } from '#design/layouts'
+import { Screen } from '#design/layouts'
 import { list as s } from '#design/recipes'
-import { Meal } from '#shared'
+import { daysWithCals, niceDate, useAppStuff } from '#shared'
 
-type Props = {
-  meals: Meal[]
-}
-
-export function HistoryScreen({ meals }: Props) {
-  const grouped: any = {}
-
-  for (let i = 0; i < meals.length; i++) {
-    const m = meals[i]
-    if (!grouped[m.date]) grouped[m.date] = []
-    grouped[m.date].push(m)
-  }
-
-  const days = Object.keys(grouped)
+export function HistoryScreen() {
+  const { mealList } = useAppStuff()
+  const rows = daysWithCals(mealList)
 
   return (
-    <Screen>
+    <Screen title="History">
       <FlatList
-        data={days}
-        keyExtractor={d => d}
+        data={rows}
+        keyExtractor={x => x.date}
+        contentContainerStyle={s.pad}
+        ListEmptyComponent={<Text style={s.empty}>nothing yet</Text>}
         renderItem={({ item }) => (
-          <View style={s.section}>
-            <Text style={s.date}>{item}</Text>
-            {grouped[item].map((m: Meal) => (
-              <Row key={m.id}>
-                <Text>{m.name}</Text>
-                <Text style={s.rowCal}>{m.cal} kcal</Text>
-              </Row>
-            ))}
+          <View style={s.row}>
+            <Text style={s.rowTitle}>{niceDate(item.date)}</Text>
+            <Text style={s.rowAccent}>{item.total} kcal</Text>
           </View>
         )}
-        ListEmptyComponent={<Text style={s.empty}>no meals logged yet</Text>}
       />
     </Screen>
   )
