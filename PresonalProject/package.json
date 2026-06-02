@@ -4,7 +4,8 @@
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "expo start --lan",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "test": "jest --runInBand --ci --no-watchman"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
@@ -20,11 +21,32 @@
     "react-native-svg": "15.15.3"
   },
   "devDependencies": {
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^13.3.3",
+    "@types/jest": "^30.0.0",
     "@types/react": "~19.2.2",
     "babel-plugin-module-resolver": "^5.0.3",
     "eslint": "^9.0.0",
     "eslint-config-expo": "~55.0.1",
+    "jest": "^29.7.0",
+    "react-test-renderer": "^19.2.0",
     "typescript": "~5.9.2"
   },
   "private": true
+  ,
+  "jest": {
+    "preset": "react-native",
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.ts"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+    },
+    "testMatch": [
+      "<rootDir>/src/shared/design/components/__tests__/**/*.test.tsx"
+    ],
+    "moduleNameMapper": {
+      "^react-native-svg$": "<rootDir>/__mocks__/react-native-svg.js"
+    }
+  }
 }
