@@ -13,10 +13,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
-    "plugins": [
-      "expo-router",
-      "expo-screen-orientation"
-    ],
+    "plugins": ["expo-router", "expo-screen-orientation"],
     "experiments": {
       "typedRoutes": true
     },

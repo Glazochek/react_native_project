@@ -1,4 +1,4 @@
-import { Pressable, Text , StyleSheet } from "react-native";
+import { Pressable, Text, StyleSheet } from "react-native";
 
 import * as radius from "../../primitives/radius";
 import * as space from "../../primitives/spacing";

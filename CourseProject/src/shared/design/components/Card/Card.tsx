@@ -1,4 +1,4 @@
-import  { type StyleProp, type ViewStyle } from "react-native";
+import { type StyleProp, type ViewStyle } from "react-native";
 import { View } from "react-native";
 
 import { card as c } from "../../recipes/card";

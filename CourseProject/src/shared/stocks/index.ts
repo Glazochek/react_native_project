@@ -1,6 +1,6 @@
-export const KEY = "d8c0oehr01qkc5gdqcs0d8c0oehr01qkc5gdqcsg";
+const KEY = "d8c0oehr01qkc5gdqcs0d8c0oehr01qkc5gdqcsg";
 
-export const SYMBOLS = [
+const SYMBOLS = [
   "AAPL",
   "TSLA",
   "GOOGL",
@@ -58,7 +58,7 @@ export async function getQuote(symbol: string) {
   };
 }
 
-export async function getProfile(symbol: string) {
+async function getProfile(symbol: string) {
   const res = await fetch(
     `https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${KEY}`,
   );

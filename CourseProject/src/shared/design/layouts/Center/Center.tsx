@@ -1,4 +1,4 @@
-import  { type StyleProp, type ViewProps, type ViewStyle } from "react-native";
+import { type StyleProp, type ViewProps, type ViewStyle } from "react-native";
 import { View } from "react-native";
 
 import { screen as s } from "../../recipes/screen";

@@ -2,7 +2,7 @@ import { type KnipConfiguration } from "knip";
 
 const config: KnipConfiguration = {
   $schema: "https://unpkg.com/knip@6/schema.json",
-  ignoreFiles: ["dist/**", "web-build/**"],
+  ignoreFiles: ["dist/**", "web-build/**", "babel.config.cjs"],
   ignoreDependencies: ["expo-updates", "expo-system-ui"],
 };
 

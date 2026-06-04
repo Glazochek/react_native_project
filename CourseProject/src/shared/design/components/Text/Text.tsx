@@ -1,6 +1,6 @@
-import  { type Href } from "expo-router";
+import { type Href } from "expo-router";
 import { Link } from "expo-router";
-import  { type StyleProp, type TextStyle } from "react-native";
+import { type StyleProp, type TextStyle } from "react-native";
 import { Text as RNText } from "react-native";
 
 import { text as s } from "../../recipes/text";

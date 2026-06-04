@@ -1,4 +1,8 @@
-import  { type ScrollViewProps, type StyleProp, type ViewStyle } from "react-native";
+import {
+  type ScrollViewProps,
+  type StyleProp,
+  type ViewStyle,
+} from "react-native";
 import { ScrollView } from "react-native";
 
 import { screen as s } from "../../recipes/screen";
