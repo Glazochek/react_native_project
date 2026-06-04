@@ -43,7 +43,10 @@ export type MealSection = {
   data: MealThing[]
 }
 
-export function mealSections(list: MealThing[], maxDays?: number): MealSection[] {
+export function mealSections(
+  list: MealThing[],
+  maxDays?: number,
+): MealSection[] {
   const map: Record<string, MealThing[]> = {}
   for (let i = 0; i < list.length; i++) {
     const m = list[i]
