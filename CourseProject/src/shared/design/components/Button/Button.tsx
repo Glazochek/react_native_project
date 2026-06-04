@@ -1,10 +1,9 @@
-import { Pressable, Text } from "react-native";
+import { Pressable, Text , StyleSheet } from "react-native";
 
-import * as sem from "../../semantics/colors";
-import * as space from "../../primitives/spacing";
 import * as radius from "../../primitives/radius";
+import * as space from "../../primitives/spacing";
 import * as t from "../../primitives/typography";
-import { StyleSheet } from "react-native";
+import * as sem from "../../semantics/colors";
 
 const s = StyleSheet.create({
   base: {

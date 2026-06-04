@@ -34,11 +34,20 @@ export type NewsItem = {
   url: string;
 };
 
+type QuoteRaw = {
+  c?: number;
+  o?: number;
+  h?: number;
+  l?: number;
+  pc?: number;
+  dp?: number;
+};
+
 export async function getQuote(symbol: string) {
   const res = await fetch(
     `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${KEY}`,
   );
-  const raw = await res.json();
+  const raw = (await res.json()) as QuoteRaw;
   return {
     c: Number(raw.c) || 0,
     o: Number(raw.o) || 0,

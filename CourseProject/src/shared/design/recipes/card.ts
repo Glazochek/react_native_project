@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 
-import * as sem from "../semantics/colors";
-import * as space from "../primitives/spacing";
 import * as radius from "../primitives/radius";
+import * as space from "../primitives/spacing";
+import * as sem from "../semantics/colors";
 
 export const card = StyleSheet.create({
   shell: {

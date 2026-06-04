@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
-import * as sem from "../semantics/colors";
 import * as t from "../primitives/typography";
+import * as sem from "../semantics/colors";
 
 export const text = StyleSheet.create({
   normal: { fontSize: t.sizeMd, color: sem.text },

@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "npm run lint-typecheck && npm run lint-eslint && npm run lint-prettier && npm run lint-knip",
     "lint-typecheck": "tsc --noEmit",
-    "lint-eslint": "eslint src app babel.config.cjs jest.setup.ts eslint.config.js knip.config.ts expo-env.d.ts",
+    "lint-eslint": "eslint src",
     "lint-prettier": "prettier --check .",
     "lint-knip": "knip",
     "start": "expo start --clear",

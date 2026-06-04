@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
-import * as sem from "../semantics/colors";
 import * as space from "../primitives/spacing";
+import * as sem from "../semantics/colors";
 
 export const screen = StyleSheet.create({
   safe: {

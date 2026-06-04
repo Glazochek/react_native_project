@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 
-import { ScreenScroll, Stack } from "#design/layouts";
 import { Text } from "#design/components";
-import { getStockList, StockItem } from "#shared/stocks";
+import { ScreenScroll, Stack } from "#design/layouts";
 import { StockCard } from "#features/markets";
+import { getStockList, type StockItem } from "#shared/stocks";
 
 export function FavoritesScreen() {
   const nav = useRouter();
@@ -23,9 +23,9 @@ export function FavoritesScreen() {
   }
 
   useEffect(() => {
-    load();
+    void load();
     const t = setInterval(() => {
-      load();
+      void load();
     }, 1500);
     return () => clearInterval(t);
   }, []);

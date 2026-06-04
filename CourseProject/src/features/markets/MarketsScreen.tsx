@@ -1,12 +1,12 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Switch, TextInput, View } from "react-native";
-import { useRouter } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { Screen } from "#design/layouts";
-import { Text } from "#design/components";
-import { getStockList, StockItem } from "#shared/stocks";
 import { semantics } from "#design";
+import { Text } from "#design/components";
+import { Screen } from "#design/layouts";
+import { getStockList, type StockItem } from "#shared/stocks";
 
 import { StockCard } from "./StockCard";
 
@@ -21,11 +21,11 @@ export function MarketsScreen() {
     const stocks = await getStockList();
     setList(stocks);
     const raw = await AsyncStorage.getItem("fav_stocks");
-    setFav(raw ? JSON.parse(raw) : []);
+    setFav(raw ? (JSON.parse(raw) as string[]) : []);
   }
 
   useEffect(() => {
-    load();
+    void load();
   }, []);
 
   async function toggle(sym: string) {

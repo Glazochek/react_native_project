@@ -1,7 +1,8 @@
 import { Pressable, StyleSheet, View } from "react-native";
-import { Card, Text } from "#design/components";
+
 import { semantics } from "#design";
-import { StockItem } from "#shared/stocks";
+import { Card, Text } from "#design/components";
+import { type StockItem } from "#shared/stocks";
 
 type P = {
   item: StockItem;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Pressable, StyleSheet, View, Linking } from "react-native";
 
-import { ScreenScroll, Stack } from "#design/layouts";
 import { Card, Text } from "#design/components";
-import { getMarketNews, NewsItem } from "#shared/stocks";
+import { ScreenScroll, Stack } from "#design/layouts";
+import { getMarketNews, type NewsItem } from "#shared/stocks";
 
 export function BlogScreen() {
   const [items, setItems] = useState<NewsItem[]>([]);
@@ -14,7 +14,7 @@ export function BlogScreen() {
   }
 
   useEffect(() => {
-    load();
+    void load();
   }, []);
 
   return (

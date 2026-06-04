@@ -1,11 +1,11 @@
-import { useState } from "react";
 import { fireEvent, render } from "@testing-library/react-native";
+import { useState } from "react";
 
 import { Button, Card, Text } from "..";
 
 describe("shared components smoke", () => {
   it("renders Button", () => {
-    const r = render(<Button title="save" onPress={() => {}} />);
+    const r = render(<Button title="save" onPress={jest.fn()} />);
     expect(r.toJSON()).toBeTruthy();
   });
 
