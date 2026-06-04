@@ -45,7 +45,7 @@ jobs:
           cache-dependency-path: PresonalProject/package-lock.json
       - uses: expo/expo-github-action@v8
         with:
-          eas-version: latest
+          eas-version: 20.0.0
           token: ${{ secrets.EXPO_TOKEN }}
       - run: npm ci
-      - run: eas build --platform all --profile preview --non-interactive
+      - run: npm run eas -- build --platform android --profile preview --non-interactive

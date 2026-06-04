@@ -12,7 +12,10 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "bundleIdentifier": "com.nomnom.app"
+      "bundleIdentifier": "com.nomnom.app",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.nomnom.app",
