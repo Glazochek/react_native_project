@@ -22,7 +22,7 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="favorites"
+        name="favorites/index"
         options={{
           title: "Favorites",
           tabBarIcon: ({ color, size }) => (
@@ -31,7 +31,7 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="blog"
+        name="blog/index"
         options={{
           title: "Blog",
           tabBarIcon: ({ color, size }) => (

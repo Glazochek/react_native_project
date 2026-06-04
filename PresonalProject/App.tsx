@@ -1,5 +1,7 @@
+import 'react-native-gesture-handler'
 import { DarkTheme, NavigationContainer } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import { MainTabs } from './src/navigation'
 import { AppProvider } from '#shared'
@@ -18,11 +20,13 @@ const navTheme = {
 
 export default function App() {
   return (
-    <AppProvider>
-      <NavigationContainer theme={navTheme}>
-        <StatusBar style="light" />
-        <MainTabs />
-      </NavigationContainer>
-    </AppProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <AppProvider>
+        <NavigationContainer theme={navTheme}>
+          <StatusBar style="light" />
+          <MainTabs />
+        </NavigationContainer>
+      </AppProvider>
+    </GestureHandlerRootView>
   )
 }

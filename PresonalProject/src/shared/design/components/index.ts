@@ -1,5 +1,6 @@
 export { Button } from './Button'
 export { CalorieRing } from './CalorieRing'
 export { Input } from './Input'
+export { SwipeRow } from './SwipeRow'
 export { SwitchRow } from './SwitchRow'
 export { Text } from './Text'

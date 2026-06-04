@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 
-import { Text } from "#design/components";
+import { SwipeRow, Text } from "#design/components";
 import { ScreenScroll, Stack } from "#design/layouts";
 import { StockCard } from "#features/markets";
 import { getStockList, type StockItem } from "#shared/stocks";
@@ -20,6 +20,14 @@ export function FavoritesScreen() {
     }
     const v = await getStockList(ids);
     setList(v);
+  }
+
+  async function remove(sym: string) {
+    const raw = await AsyncStorage.getItem("fav_stocks");
+    const ids = raw ? (JSON.parse(raw) as string[]) : [];
+    const next = ids.filter((x) => x !== sym);
+    await AsyncStorage.setItem("fav_stocks", JSON.stringify(next));
+    setList((old) => old.filter((it) => it.symbol !== sym));
   }
 
   useEffect(() => {
@@ -40,11 +48,16 @@ export function FavoritesScreen() {
     >
       {list.length === 0 ? <Text variant="muted">No favorites yet</Text> : null}
       {list.map((it) => (
-        <StockCard
+        <SwipeRow
           key={it.symbol}
-          item={it}
-          onOpen={() => nav.push(`/markets/${it.symbol}`)}
-        />
+          actionLabel="Remove"
+          onAction={() => void remove(it.symbol)}
+        >
+          <StockCard
+            item={it}
+            onOpen={() => nav.push(`/markets/${it.symbol}`)}
+          />
+        </SwipeRow>
       ))}
     </ScreenScroll>
   );

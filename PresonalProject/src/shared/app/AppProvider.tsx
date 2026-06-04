@@ -17,6 +17,7 @@ type CtxType = {
   mealList: MealThing[]
   prof: ProfileStuff
   addMeal: (m: MealThing) => void
+  removeMeal: (id: number) => void
   patchProf: (p: Partial<ProfileStuff>) => void
   reloadMeals: () => Promise<void>
   reloadTodayMeals: () => Promise<void>
@@ -56,6 +57,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setMealList((old) => [...old, m])
   }, [])
 
+  const removeMeal = useCallback((id: number) => {
+    setMealList((old) => old.filter((m) => m.id !== id))
+  }, [])
+
   const patchProf = useCallback((p: Partial<ProfileStuff>) => {
     setProf((old) => ({ ...old, ...p }))
   }, [])
@@ -76,7 +81,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   return (
     <Ctx.Provider
-      value={{ mealList, prof, addMeal, patchProf, reloadMeals, reloadTodayMeals }}
+      value={{
+        mealList,
+        prof,
+        addMeal,
+        removeMeal,
+        patchProf,
+        reloadMeals,
+        reloadTodayMeals,
+      }}
     >
       {children}
     </Ctx.Provider>
