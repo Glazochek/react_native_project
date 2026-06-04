@@ -15,6 +15,26 @@ const SYMBOLS = [
   "ORCL",
 ];
 
+const MORE_SYMBOLS = [
+  "DIS",
+  "V",
+  "JPM",
+  "BAC",
+  "WMT",
+  "JNJ",
+  "PG",
+  "MA",
+  "HD",
+  "CVX",
+];
+
+export const STOCK_POOL = [...SYMBOLS, ...MORE_SYMBOLS];
+
+export function nextSymbols(loaded: string[], take = 4) {
+  const left = STOCK_POOL.filter((sym) => !loaded.includes(sym));
+  return left.slice(0, take);
+}
+
 export type StockItem = {
   symbol: string;
   name: string;

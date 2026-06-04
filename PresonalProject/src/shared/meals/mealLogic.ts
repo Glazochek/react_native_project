@@ -26,6 +26,46 @@ export function makeMeal(
   }
 }
 
+export function todayMeals(list: MealThing[]) {
+  const td = new Date().toDateString()
+  const out: MealThing[] = []
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].date === td) out.push(list[i])
+  }
+  out.sort((a, b) => b.id - a.id)
+  return out
+}
+
+export type MealSection = {
+  title: string
+  date: string
+  total: number
+  data: MealThing[]
+}
+
+export function mealSections(list: MealThing[], maxDays?: number): MealSection[] {
+  const map: Record<string, MealThing[]> = {}
+  for (let i = 0; i < list.length; i++) {
+    const m = list[i]
+    if (!map[m.date]) map[m.date] = []
+    map[m.date].push(m)
+  }
+  const dates = Object.keys(map).sort(
+    (a, b) => new Date(b).getTime() - new Date(a).getTime(),
+  )
+  const pick = maxDays ? dates.slice(0, maxDays) : dates
+  const out: MealSection[] = []
+  for (let i = 0; i < pick.length; i++) {
+    const date = pick[i]
+    const meals = map[date]
+    let total = 0
+    for (let j = 0; j < meals.length; j++) total += meals[j].cal
+    meals.sort((a, b) => b.id - a.id)
+    out.push({ title: niceDate(date), date, total, data: meals })
+  }
+  return out
+}
+
 export function daysWithCals(list: MealThing[]): DayRow[] {
   const map: Record<string, number> = {}
   for (let i = 0; i < list.length; i++) {

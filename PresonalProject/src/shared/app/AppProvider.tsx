@@ -18,6 +18,8 @@ type CtxType = {
   prof: ProfileStuff
   addMeal: (m: MealThing) => void
   patchProf: (p: Partial<ProfileStuff>) => void
+  reloadMeals: () => Promise<void>
+  reloadTodayMeals: () => Promise<void>
 }
 
 const Ctx = createContext<CtxType | null>(null)
@@ -58,8 +60,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setProf((old) => ({ ...old, ...p }))
   }, [])
 
+  const reloadMeals = useCallback(async () => {
+    try {
+      const mRaw = await AsyncStorage.getItem(MEALS_KEY)
+      if (mRaw) setMealList(JSON.parse(mRaw))
+      else setMealList([])
+    } catch {}
+  }, [])
+
+  const reloadTodayMeals = useCallback(async () => {
+    const td = new Date().toDateString()
+    setMealList((old) => old.filter((m) => m.date !== td))
+    await reloadMeals()
+  }, [reloadMeals])
+
   return (
-    <Ctx.Provider value={{ mealList, prof, addMeal, patchProf }}>
+    <Ctx.Provider
+      value={{ mealList, prof, addMeal, patchProf, reloadMeals, reloadTodayMeals }}
+    >
       {children}
     </Ctx.Provider>
   )
