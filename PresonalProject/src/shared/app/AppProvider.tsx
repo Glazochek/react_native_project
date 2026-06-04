@@ -1,5 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from 'react'
 
 import { emptyProfile, type MealThing, type ProfileStuff } from '../meals'
 
@@ -27,7 +34,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         const pRaw = await AsyncStorage.getItem(PROF_KEY)
         if (mRaw) setMealList(JSON.parse(mRaw))
         if (pRaw) setProf({ ...emptyProfile, ...JSON.parse(pRaw) })
-      } catch (_e) {}
+      } catch {}
       setOk(true)
     }
     load()
@@ -44,15 +51,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [prof, ok])
 
   const addMeal = useCallback((m: MealThing) => {
-    setMealList(old => [...old, m])
+    setMealList((old) => [...old, m])
   }, [])
 
   const patchProf = useCallback((p: Partial<ProfileStuff>) => {
-    setProf(old => ({ ...old, ...p }))
+    setProf((old) => ({ ...old, ...p }))
   }, [])
 
   return (
-    <Ctx.Provider value={{ mealList, prof, addMeal, patchProf }}>{children}</Ctx.Provider>
+    <Ctx.Provider value={{ mealList, prof, addMeal, patchProf }}>
+      {children}
+    </Ctx.Provider>
   )
 }
 

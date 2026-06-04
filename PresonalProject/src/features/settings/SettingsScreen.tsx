@@ -17,7 +17,7 @@ export function SettingsScreen() {
           placeholder="25"
           keyboardType="number-pad"
           value={prof.age}
-          onChangeText={v => patchProf({ age: v })}
+          onChangeText={(v) => patchProf({ age: v })}
         />
 
         <Text variant="label">weight kg</Text>
@@ -25,7 +25,7 @@ export function SettingsScreen() {
           placeholder="70"
           keyboardType="decimal-pad"
           value={prof.weightKg}
-          onChangeText={v => patchProf({ weightKg: v })}
+          onChangeText={(v) => patchProf({ weightKg: v })}
         />
 
         <Text variant="label">target weight kg</Text>
@@ -33,7 +33,7 @@ export function SettingsScreen() {
           placeholder="65"
           keyboardType="decimal-pad"
           value={prof.targetWeightKg}
-          onChangeText={v => patchProf({ targetWeightKg: v })}
+          onChangeText={(v) => patchProf({ targetWeightKg: v })}
         />
 
         <Text variant="label">months to goal</Text>
@@ -41,13 +41,13 @@ export function SettingsScreen() {
           placeholder="6"
           keyboardType="number-pad"
           value={prof.months}
-          onChangeText={v => patchProf({ months: v })}
+          onChangeText={(v) => patchProf({ months: v })}
         />
 
         <SwitchRow
           label={`gender: ${prof.isMale ? 'male' : 'female'}`}
           value={prof.isMale}
-          onValueChange={v => patchProf({ isMale: v })}
+          onValueChange={(v) => patchProf({ isMale: v })}
         />
 
         <Text variant="label">min calories per day</Text>
@@ -56,7 +56,7 @@ export function SettingsScreen() {
         <SwitchRow
           label="healthy meal default"
           value={prof.healthyByDefault}
-          onValueChange={v => patchProf({ healthyByDefault: v })}
+          onValueChange={(v) => patchProf({ healthyByDefault: v })}
         />
       </ScrollView>
     </Screen>

@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from "react-native";
 
-import * as sem from "../semantics/colors"
-import * as t from "../primitives/typography"
+import * as sem from "../semantics/colors";
+import * as t from "../primitives/typography";
 
 export const text = StyleSheet.create({
   normal: { fontSize: t.sizeMd, color: sem.text },
@@ -13,4 +13,4 @@ export const text = StyleSheet.create({
     color: sem.text,
   },
   title: { fontSize: t.sizeXl, color: sem.text },
-})
+});

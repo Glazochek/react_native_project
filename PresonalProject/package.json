@@ -4,8 +4,12 @@
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "expo start --lan",
-    "lint": "expo lint",
-    "test": "jest --runInBand --ci --no-watchman"
+    "lint": "npm run lint-typecheck && npm run lint-eslint && npm run lint-prettier",
+    "lint-typecheck": "tsc --noEmit",
+    "lint-eslint": "eslint App.tsx src babel.config.js jest.setup.ts eslint.config.js",
+    "lint-prettier": "prettier --check .",
+    "test": "jest --runInBand --ci --no-watchman",
+    "eas": "eas"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
@@ -25,15 +29,17 @@
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^30.0.0",
     "@types/react": "~19.2.2",
+    "babel-jest": "^29.7.0",
     "babel-plugin-module-resolver": "^5.0.3",
+    "eas-cli": "^20.0.0",
     "eslint": "^9.0.0",
     "eslint-config-expo": "~55.0.1",
     "jest": "^29.7.0",
+    "prettier": "^3.5.3",
     "react-test-renderer": "^19.2.0",
     "typescript": "~5.9.2"
   },
-  "private": true
-  ,
+  "private": true,
   "jest": {
     "preset": "react-native",
     "setupFilesAfterEnv": [

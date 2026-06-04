@@ -25,7 +25,9 @@ describe('shared components smoke', () => {
   })
 
   it('renders SwitchRow', () => {
-    const r = render(<SwitchRow label="flag" value={false} onValueChange={() => {}} />)
+    const r = render(
+      <SwitchRow label="flag" value={false} onValueChange={() => {}} />,
+    )
     expect(r.toJSON()).toBeTruthy()
   })
 

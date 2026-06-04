@@ -11,7 +11,10 @@ type Props = {
 export function Button({ title, onPress, variant = 'default' }: Props) {
   const isPrimary = variant === 'primary'
   return (
-    <Pressable style={[b.base, isPrimary ? b.primary : b.default]} onPress={onPress}>
+    <Pressable
+      style={[b.base, isPrimary ? b.primary : b.default]}
+      onPress={onPress}
+    >
       <Text style={isPrimary ? b.labelPrimary : b.label}>{title}</Text>
     </Pressable>
   )

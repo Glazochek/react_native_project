@@ -1,5 +1,5 @@
-export * as primitives from "./primitives"
-export * as semantics from "./semantics"
-export * from "./recipes"
-export * from "./components"
-export * from "./layouts"
+export * as primitives from "./primitives";
+export * as semantics from "./semantics";
+export * from "./recipes";
+export * from "./components";
+export * from "./layouts";

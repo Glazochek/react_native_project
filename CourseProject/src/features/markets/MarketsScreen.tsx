@@ -1,47 +1,51 @@
-import { useEffect, useMemo, useState } from "react"
-import { ScrollView, StyleSheet, Switch, TextInput, View } from "react-native"
-import { useRouter } from "expo-router"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import { useEffect, useMemo, useState } from "react";
+import { ScrollView, StyleSheet, Switch, TextInput, View } from "react-native";
+import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { Screen } from "#design/layouts"
-import { Text } from "#design/components"
-import { getStockList, StockItem } from "#shared/stocks"
-import { semantics } from "#design"
+import { Screen } from "#design/layouts";
+import { Text } from "#design/components";
+import { getStockList, StockItem } from "#shared/stocks";
+import { semantics } from "#design";
 
-import { StockCard } from "./StockCard"
+import { StockCard } from "./StockCard";
 
 export function MarketsScreen() {
-  const nav = useRouter()
-  const [list, setList] = useState<StockItem[]>([])
-  const [fav, setFav] = useState<string[]>([])
-  const [growingOnly, setGrowingOnly] = useState(false)
-  const [searchTxt, setSearchTxt] = useState("")
+  const nav = useRouter();
+  const [list, setList] = useState<StockItem[]>([]);
+  const [fav, setFav] = useState<string[]>([]);
+  const [growingOnly, setGrowingOnly] = useState(false);
+  const [searchTxt, setSearchTxt] = useState("");
 
   async function load() {
-    const stocks = await getStockList()
-    setList(stocks)
-    const raw = await AsyncStorage.getItem("fav_stocks")
-    setFav(raw ? JSON.parse(raw) : [])
+    const stocks = await getStockList();
+    setList(stocks);
+    const raw = await AsyncStorage.getItem("fav_stocks");
+    setFav(raw ? JSON.parse(raw) : []);
   }
 
   useEffect(() => {
-    load()
-  }, [])
+    load();
+  }, []);
 
   async function toggle(sym: string) {
-    const next = fav.includes(sym) ? fav.filter(x => x !== sym) : [...fav, sym]
-    setFav(next)
-    await AsyncStorage.setItem("fav_stocks", JSON.stringify(next))
+    const next = fav.includes(sym)
+      ? fav.filter((x) => x !== sym)
+      : [...fav, sym];
+    setFav(next);
+    await AsyncStorage.setItem("fav_stocks", JSON.stringify(next));
   }
 
   const shown = useMemo(() => {
-    const q = searchTxt.trim().toLowerCase()
-    return list.filter(it => {
-      if (growingOnly && it.dp <= 0) return false
-      if (!q) return true
-      return it.symbol.toLowerCase().includes(q) || it.name.toLowerCase().includes(q)
-    })
-  }, [list, growingOnly, searchTxt])
+    const q = searchTxt.trim().toLowerCase();
+    return list.filter((it) => {
+      if (growingOnly && it.dp <= 0) return false;
+      if (!q) return true;
+      return (
+        it.symbol.toLowerCase().includes(q) || it.name.toLowerCase().includes(q)
+      );
+    });
+  }, [list, growingOnly, searchTxt]);
 
   return (
     <Screen style={s.screen}>
@@ -53,7 +57,10 @@ export function MarketsScreen() {
             <Switch
               value={growingOnly}
               onValueChange={setGrowingOnly}
-              trackColor={{ false: semantics.colors.border, true: semantics.colors.accent }}
+              trackColor={{
+                false: semantics.colors.border,
+                true: semantics.colors.accent,
+              }}
               thumbColor={semantics.colors.text}
             />
           </View>
@@ -70,8 +77,10 @@ export function MarketsScreen() {
       </View>
 
       <ScrollView contentContainerStyle={s.list}>
-        {shown.length === 0 ? <Text variant="muted">No stocks found</Text> : null}
-        {shown.map(it => (
+        {shown.length === 0 ? (
+          <Text variant="muted">No stocks found</Text>
+        ) : null}
+        {shown.map((it) => (
           <StockCard
             key={it.symbol}
             item={it}
@@ -82,7 +91,7 @@ export function MarketsScreen() {
         ))}
       </ScrollView>
     </Screen>
-  )
+  );
 }
 
 const s = StyleSheet.create({
@@ -128,4 +137,4 @@ const s = StyleSheet.create({
   list: {
     paddingBottom: 20,
   },
-})
+});

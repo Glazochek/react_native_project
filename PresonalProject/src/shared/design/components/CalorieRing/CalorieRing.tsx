@@ -19,7 +19,14 @@ export function CalorieRing({ eaten, max }: Props) {
   const gap = around * (1 - part)
 
   return (
-    <View style={{ width: sz, height: sz, alignItems: 'center', justifyContent: 'center' }}>
+    <View
+      style={{
+        width: sz,
+        height: sz,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <Svg width={sz} height={sz} style={{ position: 'absolute' }}>
         <Circle
           cx={sz / 2}

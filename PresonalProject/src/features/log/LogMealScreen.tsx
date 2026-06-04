@@ -32,7 +32,11 @@ export function LogMealScreen({ onDone }: Props) {
         onChangeText={form.setCalStr}
       />
 
-      <SwitchRow label="healthy" value={form.hlthy} onValueChange={form.setHlthy} />
+      <SwitchRow
+        label="healthy"
+        value={form.hlthy}
+        onValueChange={form.setHlthy}
+      />
 
       <Button title="save" variant="primary" onPress={onSave} />
     </ModalScreen>

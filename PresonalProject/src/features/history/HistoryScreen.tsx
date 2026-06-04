@@ -13,7 +13,7 @@ export function HistoryScreen() {
     <Screen title="History">
       <FlatList
         data={rows}
-        keyExtractor={x => x.date}
+        keyExtractor={(x) => x.date}
         contentContainerStyle={s.pad}
         ListEmptyComponent={<Text style={s.empty}>nothing yet</Text>}
         renderItem={({ item }) => (

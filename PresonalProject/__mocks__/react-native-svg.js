@@ -14,4 +14,3 @@ module.exports = {
   default: MockSvg,
   Circle: MockCircle,
 }
-

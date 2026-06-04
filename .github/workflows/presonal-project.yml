@@ -1,0 +1,51 @@
+name: PresonalProject
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - PresonalProject/**
+      - .github/workflows/presonal-project.yml
+  pull_request:
+    paths:
+      - PresonalProject/**
+      - .github/workflows/presonal-project.yml
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: PresonalProject
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: PresonalProject/package-lock.json
+      - run: npm ci
+      - run: npm run lint-typecheck
+      - run: npm run lint-eslint
+      - run: npm run lint-prettier
+      - run: npm run test
+
+  eas-build:
+    needs: lint-and-test
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: PresonalProject/package-lock.json
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - run: npm ci
+      - run: eas build --platform all --profile preview --non-interactive

@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from "react-native";
 
-import * as sem from "../semantics/colors"
-import * as space from "../primitives/spacing"
+import * as sem from "../semantics/colors";
+import * as space from "../primitives/spacing";
 
 export const screen = StyleSheet.create({
   safe: {
@@ -26,4 +26,4 @@ export const screen = StyleSheet.create({
     alignItems: "center",
     marginBottom: space.sm,
   },
-})
+});

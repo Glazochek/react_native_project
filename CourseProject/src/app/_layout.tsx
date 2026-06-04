@@ -1,6 +1,6 @@
-import "react-native-gesture-handler"
-import { Stack } from "expo-router"
-import { StatusBar } from "expo-status-bar"
+import "react-native-gesture-handler";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 export default function Layout() {
   return (
@@ -10,5 +10,5 @@ export default function Layout() {
       </Stack>
       <StatusBar style="light" />
     </>
-  )
+  );
 }

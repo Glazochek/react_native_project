@@ -1,1 +1,1 @@
-export { default } from "./ScreenScroll"
+export { default } from "./ScreenScroll";

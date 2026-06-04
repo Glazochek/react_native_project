@@ -1,1 +1,1 @@
-export { BlogScreen } from "./BlogScreen"
+export { BlogScreen } from "./BlogScreen";

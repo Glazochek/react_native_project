@@ -9,7 +9,11 @@ export function todayCals(list: MealThing[]) {
   return s
 }
 
-export function makeMeal(name: string, calTxt: string, healthy: boolean): MealThing | null {
+export function makeMeal(
+  name: string,
+  calTxt: string,
+  healthy: boolean,
+): MealThing | null {
   const n = name.trim()
   const c = Number(calTxt)
   if (!n || !c || c <= 0) return null

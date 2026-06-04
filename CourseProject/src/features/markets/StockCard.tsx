@@ -1,20 +1,20 @@
-import { Pressable, StyleSheet, View } from "react-native"
-import { Card, Text } from "#design/components"
-import { semantics } from "#design"
-import { StockItem } from "#shared/stocks"
+import { Pressable, StyleSheet, View } from "react-native";
+import { Card, Text } from "#design/components";
+import { semantics } from "#design";
+import { StockItem } from "#shared/stocks";
 
 type P = {
-  item: StockItem
-  onOpen: () => void
-  onStar?: () => void
-  starred?: boolean
-}
+  item: StockItem;
+  onOpen: () => void;
+  onStar?: () => void;
+  starred?: boolean;
+};
 
 export function StockCard({ item, onOpen, onStar, starred }: P) {
-  const price = typeof item.c === "number" ? item.c : 0
-  const chg = typeof item.dp === "number" ? item.dp : 0
-  const up = chg >= 0
-  const hasPrice = price > 0
+  const price = typeof item.c === "number" ? item.c : 0;
+  const chg = typeof item.dp === "number" ? item.dp : 0;
+  const up = chg >= 0;
+  const hasPrice = price > 0;
 
   return (
     <Card style={s.cardMini}>
@@ -28,7 +28,11 @@ export function StockCard({ item, onOpen, onStar, starred }: P) {
 
         <View style={s.mid}>
           <Text>{hasPrice ? `$${price.toFixed(2)}` : "—"}</Text>
-          <Text style={{ color: up ? semantics.colors.accent : semantics.colors.accentWarm }}>
+          <Text
+            style={{
+              color: up ? semantics.colors.accent : semantics.colors.accentWarm,
+            }}
+          >
             {hasPrice ? `${up ? "+" : ""}${chg.toFixed(2)}%` : "—"}
           </Text>
         </View>
@@ -42,7 +46,7 @@ export function StockCard({ item, onOpen, onStar, starred }: P) {
         </View>
       </View>
     </Card>
-  )
+  );
 }
 
 const s = StyleSheet.create({
@@ -73,4 +77,4 @@ const s = StyleSheet.create({
     justifyContent: "center",
   },
   starTxt: { fontSize: 22, color: semantics.colors.accent },
-})
+});

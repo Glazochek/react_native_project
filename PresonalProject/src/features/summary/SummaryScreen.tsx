@@ -16,10 +16,18 @@ export function SummaryScreen() {
     <>
       <Screen title="Summary" centered>
         <CalorieRing eaten={eaten} max={max} />
-        <Button title="log meal" variant="primary" onPress={() => setShowLog(true)} />
+        <Button
+          title="log meal"
+          variant="primary"
+          onPress={() => setShowLog(true)}
+        />
       </Screen>
 
-      <Modal visible={showLog} animationType="slide" presentationStyle="pageSheet">
+      <Modal
+        visible={showLog}
+        animationType="slide"
+        presentationStyle="pageSheet"
+      >
         <LogMealScreen onDone={() => setShowLog(false)} />
       </Modal>
     </>

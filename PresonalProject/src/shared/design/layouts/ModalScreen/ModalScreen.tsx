@@ -10,7 +10,13 @@ type Props = ViewProps & {
   children: React.ReactNode
 }
 
-export function ModalScreen({ title, onClose, children, style, ...props }: Props) {
+export function ModalScreen({
+  title,
+  onClose,
+  children,
+  style,
+  ...props
+}: Props) {
   return (
     <SafeAreaView style={s.safe} edges={['top', 'left', 'right', 'bottom']}>
       <View style={s.modalHeader}>

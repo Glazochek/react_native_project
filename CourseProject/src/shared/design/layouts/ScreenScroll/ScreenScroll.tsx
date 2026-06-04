@@ -1,9 +1,14 @@
-import { ScrollView } from "react-native"
+import { ScrollView } from "react-native";
 
-import Screen from "../Screen/Screen"
-import { screen as s } from "../../recipes/screen"
+import Screen from "../Screen/Screen";
+import { screen as s } from "../../recipes/screen";
 
-function ScreenScroll({ header, children, contentContainerStyle, ...props }: any) {
+function ScreenScroll({
+  header,
+  children,
+  contentContainerStyle,
+  ...props
+}: any) {
   return (
     <Screen>
       <ScrollView
@@ -15,7 +20,7 @@ function ScreenScroll({ header, children, contentContainerStyle, ...props }: any
         {children}
       </ScrollView>
     </Screen>
-  )
+  );
 }
 
-export default ScreenScroll
+export default ScreenScroll;
