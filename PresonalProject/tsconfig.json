@@ -2,6 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "#design": ["src/shared/design/index.ts"],
@@ -9,5 +10,13 @@
       "#shared": ["src/shared/index.ts"],
       "#features/*": ["src/features/*/index.ts"]
     }
-  }
+  },
+  "include": [
+    "**/*.js",
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ],
+  "exclude": ["**/__tests__/**", "jest.setup.ts"]
 }

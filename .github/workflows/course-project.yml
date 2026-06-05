@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.14.0
           cache: npm
           cache-dependency-path: CourseProject/package-lock.json
       - run: npm ci
@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.14.0
           cache: npm
           cache-dependency-path: CourseProject/package-lock.json
       - uses: expo/expo-github-action@v8
@@ -49,4 +49,4 @@ jobs:
           eas-version: 20.0.0
           token: ${{ secrets.EXPO_TOKEN }}
       - run: npm ci
-      - run: npm run eas -- build --platform android --profile preview --non-interactive
+      - run: npx eas-cli@20.0.0 build --platform android --profile preview --non-interactive

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import { makeMeal, type MealThing } from '#shared'
 
@@ -11,10 +11,6 @@ export function useMealForm({ healthyByDefault, onAdd }: Opts) {
   const [nm, setNm] = useState('')
   const [calStr, setCalStr] = useState('')
   const [hlthy, setHlthy] = useState(healthyByDefault)
-
-  useEffect(() => {
-    setHlthy(healthyByDefault)
-  }, [healthyByDefault])
 
   const save = useCallback(() => {
     const m = makeMeal(nm, calStr, hlthy)
