@@ -1,24 +1,27 @@
 import { useState } from 'react'
-import { Modal, View } from 'react-native'
+import { ActivityIndicator, Modal, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 
 import { Button, CalorieRing, SwipeRow, Text } from '#design/components'
 import { Screen } from '#design/layouts'
 import { list as s } from '#design/recipes'
-import { getDailyCals, todayCals, todayMeals, useAppStuff } from '#shared'
+import { useAdjustedGoal } from '#features/market-boost'
 import { LogMealScreen } from '#features/log'
+import { getDailyCals, todayCals, todayMeals, useAppStuff } from '#shared'
 
 export function SummaryScreen() {
   const { mealList, prof, reloadTodayMeals, removeMeal } = useAppStuff()
   const [showLog, setShowLog] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
   const eaten = todayCals(mealList)
-  const max = getDailyCals(prof)
+  const norm = getDailyCals(prof)
+  const { status, goal, error, reload } = useAdjustedGoal(norm)
   const rows = todayMeals(mealList)
 
   async function onRefresh() {
     setRefreshing(true)
     await reloadTodayMeals()
+    reload()
     setRefreshing(false)
   }
 
@@ -33,7 +36,29 @@ export function SummaryScreen() {
           onRefresh={() => void onRefresh()}
           ListHeaderComponent={
             <View style={{ alignItems: 'center', marginBottom: 16 }}>
-              <CalorieRing eaten={eaten} max={max} />
+              {status === 'loading' ? (
+                <>
+                  <ActivityIndicator size="large" color="#b8ff3c" />
+                  <Text variant="muted" style={{ marginTop: 12 }}>
+                    loading market data...
+                  </Text>
+                </>
+              ) : null}
+              {status === 'error' ? (
+                <Text variant="muted" style={{ textAlign: 'center' }}>
+                  {error ?? 'could not load market data'}
+                </Text>
+              ) : null}
+              {status === 'ready' && goal !== null ? (
+                <>
+                  <CalorieRing eaten={eaten} max={goal} />
+                  {goal > norm ? (
+                    <Text variant="muted" style={{ marginTop: 8 }}>
+                      +20% market boost (AAPL, MSFT, NVDA all down)
+                    </Text>
+                  ) : null}
+                </>
+              ) : null}
               <Button
                 title="log meal"
                 variant="primary"

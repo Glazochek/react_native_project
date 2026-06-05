@@ -51,7 +51,8 @@
       "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },
     "testMatch": [
-      "<rootDir>/src/shared/design/components/__tests__/**/*.test.tsx"
+      "<rootDir>/src/shared/design/components/__tests__/**/*.test.tsx",
+      "<rootDir>/src/features/**/__tests__/**/*.test.ts"
     ],
     "moduleNameMapper": {
       "^react-native-svg$": "<rootDir>/__mocks__/react-native-svg.js"
