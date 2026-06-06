@@ -53,16 +53,16 @@ Copy the example file and add your Finnhub token:
 cp .env.example .env
 ```
 
-| Variable | Purpose |
-| --- | --- |
+| Variable                    | Purpose                                      |
+| --------------------------- | -------------------------------------------- |
 | `EXPO_PUBLIC_FINNHUB_TOKEN` | Finnhub API key for market quotes on Summary |
 
 Restart the dev server after changing `.env`.
 
 For EAS cloud builds:
 
-| Variable | Purpose | Where |
-| --- | --- | --- |
+| Variable     | Purpose                | Where                           |
+| ------------ | ---------------------- | ------------------------------- |
 | `EXPO_TOKEN` | Authenticates with EAS | Shell or GitHub Actions secrets |
 
 ### Run

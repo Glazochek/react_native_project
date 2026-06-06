@@ -53,8 +53,8 @@ Swap it for your key before running.
 
 For EAS cloud builds:
 
-| Variable | Purpose | Where |
-|----------|---------|-------|
+| Variable     | Purpose                | Where                           |
+| ------------ | ---------------------- | ------------------------------- |
 | `EXPO_TOKEN` | Authenticates with EAS | Shell or GitHub Actions secrets |
 
 ### Run

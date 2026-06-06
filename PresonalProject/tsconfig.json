@@ -5,27 +5,12 @@
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "#design": [
-        "src/shared/design/index.ts"
-      ],
-      "#design/*": [
-        "src/shared/design/*/index.ts"
-      ],
-      "#shared": [
-        "src/shared/index.ts"
-      ],
-      "#features/*": [
-        "src/features/*/index.ts"
-      ]
+      "#design": ["src/shared/design/index.ts"],
+      "#design/*": ["src/shared/design/*/index.ts"],
+      "#shared": ["src/shared/index.ts"],
+      "#features/*": ["src/features/*/index.ts"]
     }
   },
-  "include": [
-    "**/*.js",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "**/__tests__/**",
-    "jest.setup.ts"
-  ]
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx"],
+  "exclude": ["**/__tests__/**", "jest.setup.ts"]
 }
